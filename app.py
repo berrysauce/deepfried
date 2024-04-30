@@ -62,23 +62,23 @@ async def post_deepfry(image: UploadFile):
     
     edited_image = bulge(edited_image, 1)
     
-    for i in range(10):
-        with BytesIO() as output:
-            edited_image.save(output, format="JPEG", quality=1)
-            output.seek(0)
-            # Open the compressed image from memory
-            compressed_image = Image.open(output)
-            # Convert the image to RGB mode if needed
-            if compressed_image.mode != 'RGB':
-                compressed_image = compressed_image.convert('RGB')
-            
-            # Get the pixel data from the compressed image
-            pixels = compressed_image.load()
-            
-            # Do any further processing here if needed
-            
-            # You can also overwrite the original edited_image if desired
-            edited_image = compressed_image.copy()
+    #for i in range(250):
+    with BytesIO() as output:
+        edited_image.save(output, format="JPEG", quality=1)
+        output.seek(0)
+        # Open the compressed image from memory
+        compressed_image = Image.open(output)
+        # Convert the image to RGB mode if needed
+        if compressed_image.mode != 'RGB':
+            compressed_image = compressed_image.convert('RGB')
+        
+        # Get the pixel data from the compressed image
+        pixels = compressed_image.load()
+        
+        # Do any further processing here if needed
+        
+        # You can also overwrite the original edited_image if desired
+        edited_image = compressed_image.copy()
     
     # Save the processed image to memory
     output_buffer = BytesIO()
