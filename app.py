@@ -62,7 +62,7 @@ async def post_deepfry(image: UploadFile):
     
     edited_image = bulge(edited_image, 1)
     
-    for i in range(100):
+    for i in range(50):
         with BytesIO() as output:
             edited_image.save(output, format="JPEG", quality=1)
             output.seek(0)
